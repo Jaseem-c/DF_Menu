@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef8f1;
+  --color-brand-100: #dcefe3;
+  --color-brand-200: #b9dfc8;
+  --color-brand-400: #4fb283;
+  --color-brand-500: #2e9b66;
+  --color-brand-600: #1a7a50;
+  --color-brand-700: #12603f;
+  --color-brand-800: #0a4a30;
+  --color-brand-900: #033623;
+  --color-cream: #fdf6ec;
+  --color-sand: #f4ecdd;
+  --color-sand-dark: #e6d9c0;
+  --color-accent: #f5a02b;
+  --color-accent-soft: #fdebd0;
+  --color-lime: #e9e83a;
+
+  --font-sans: "Nunito Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fredoka Variable", ui-rounded, "Nunito Variable", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-brand-900);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+dialog[open].sheet {
+  animation: sheet-up 0.22s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog[open].sheet {
+    animation: none;
+  }
+}
+
+@layer components {
+  .input {
+    @apply h-11 w-full rounded-xl border border-sand-dark bg-white px-3 text-base;
+  }
+  textarea.input {
+    @apply h-auto py-2;
+  }
+  .input[aria-invalid="true"] {
+    @apply border-red-600;
+  }
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 text-sm font-bold disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-brand-700 text-white hover:bg-brand-800;
+  }
+  .btn-secondary {
+    @apply bg-white text-brand-900 ring-1 ring-sand-dark hover:bg-sand;
+  }
+  .btn-danger {
+    @apply bg-red-700 text-white hover:bg-red-800;
+  }
+  .card {
+    @apply rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sand-dark/70;
+  }
+}
